@@ -66,5 +66,25 @@ namespace EventManagmentSystem.Controller
                 return null;
             }
         }
+
+        public int getAttendeeId(string name)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "SELECT id FROM attendee WHERE name = @name";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@name", name);
+                int id = Convert.ToInt32(command.ExecuteScalar());
+                connection.Close();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return -1; // Return -1 to indicate an error
+            }
+        }
     }
 }

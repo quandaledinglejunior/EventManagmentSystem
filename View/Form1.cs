@@ -49,14 +49,37 @@ namespace EventManagmentSystem
                     new AdminDashboard().Show();
                     return;
                 }
+                else
+                {
+                  string orgPass = new OrganizerController().getOrganizerPassword(user);
+                    if (orgPass != null)
+                    {
+                        if (orgPass == password)
+                        {
+                            Session.Username = user;
+                            Session.Password = password;
+                            Session.UserType = "organizer";
+                            Session.Id = new OrganizerController().getOrganizerId(user);
+
+                            MessageBox.Show("User login successful.");
+                            this.Hide();
+                            new OrganizerDashboard().Show();
+                            return;
+                        }
+                        
+                    }
+                }
                 MessageBox.Show("User not found.");
                 textBox1.Clear();
                 textBox2.Clear();
                 return;
-                //Orgainzer Authentication will come later
             }
             if (dbPassword == password)
             {
+                Session.Username = user;
+                Session.Password = password;
+                Session.UserType = "attendee";
+                Session.Id = new AttendeeController().getAttendeeId(user);
                 MessageBox.Show("Login successful.");
                 this.Hide();
                 new AttendeeDashboard().Show();
