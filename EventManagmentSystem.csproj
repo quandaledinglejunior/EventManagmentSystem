@@ -99,18 +99,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AttendeeController.cs" />
-    <Compile Include="Controller\OrganizerController.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\Attendee.cs" />
     <Compile Include="Model\Organizers.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="View\AddOrganizer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\AddOrganizer.Designer.cs">
-      <DependentUpon>AddOrganizer.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,12 +140,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\AddOrganizer.resx">
-      <DependentUpon>AddOrganizer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\AdminDashboard.resx">
-      <DependentUpon>AdminDashboard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,9 +160,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\admindpanel.png" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\login.jpeg" />
   </ItemGroup>
