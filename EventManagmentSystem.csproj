@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AttendeeController.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\Attendee.cs" />
@@ -147,9 +148,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\login.jpeg" />
   </ItemGroup>
