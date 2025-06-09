@@ -23,5 +23,6 @@ namespace EventManagmentSystem.Model
         public string Locationn { get; set; }
         public string Description { get; set; }
         public Organizers Organizer { get; set; }
+        public bool Availability { get; set; }
     }
 }
