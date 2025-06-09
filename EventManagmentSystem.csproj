@@ -103,6 +103,7 @@
     <Compile Include="DbConnection.cs" />
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\Attendee.cs" />
+    <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Organizers.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="View\AddOrganizer.cs">
