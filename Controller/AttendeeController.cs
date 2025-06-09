@@ -44,8 +44,27 @@ namespace EventManagmentSystem.Controller
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-            
 
+        }
+
+        public string getAttendeePassword(string name)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "SELECT password FROM attendee WHERE name = @name";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@name", name);
+                string password = command.ExecuteScalar()?.ToString();
+                connection.Close();
+                return password;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
+            }
         }
     }
 }

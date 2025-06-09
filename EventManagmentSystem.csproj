@@ -104,6 +104,18 @@
     <Compile Include="Model\Attendee.cs" />
     <Compile Include="Model\Organizers.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="View\AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AdminDashboard.Designer.cs">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AttendeeDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AttendeeDashboard.Designer.cs">
+      <DependentUpon>AttendeeDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
