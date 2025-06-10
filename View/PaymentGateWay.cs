@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagmentSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -72,7 +73,12 @@ namespace EventManagmentSystem.View
                 return;
             }
 
+            Ticket ticket = new Controller.TicketController().getTicketbyId(ticketId);
 
+            double totalAmount = ticket.Price * quantity;
+
+            Purchase purchase = new Purchase(ticketId, quantity);
+            purchase.Total = totalAmount;
 
         }
 

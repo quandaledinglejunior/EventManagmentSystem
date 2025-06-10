@@ -107,5 +107,38 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        public Ticket getTicketbyId(int ticketId)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "SELECT * FROM ticket WHERE id = @ticketid";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ticketid", ticketId);
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    Ticket ticket = new Ticket(
+                        new EventController().getEventById(Convert.ToInt32(reader["event_id"])),
+                        reader["tickettype"].ToString(),
+                        Convert.ToDouble(reader["price"]),
+                        Convert.ToInt32(reader["quantity"])
+                    )
+                    {
+                        Id = Convert.ToInt32(reader["id"]),
+                        Available = Convert.ToBoolean(reader["availability"])
+                    };
+                    return ticket;
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            return null;
+        }
     }
 }

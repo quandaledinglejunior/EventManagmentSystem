@@ -107,6 +107,8 @@
     <Compile Include="Model\Attendee.cs" />
     <Compile Include="Model\Events.cs" />
     <Compile Include="Model\Organizers.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\Purchase.cs" />
     <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
