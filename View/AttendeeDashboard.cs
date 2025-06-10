@@ -16,5 +16,24 @@ namespace EventManagmentSystem.View
         {
             InitializeComponent();
         }
+
+        public void changePanel(object Form)
+        {
+            if (this.panel2.Controls.Count > 0)
+            {
+                this.panel2.Controls.RemoveAt(0);
+            }
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.panel2.Controls.Add(f);
+            this.panel2.Tag = f;
+            f.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

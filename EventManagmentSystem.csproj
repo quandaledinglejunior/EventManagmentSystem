@@ -197,6 +197,9 @@
     <EmbeddedResource Include="View\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AttendeeDashboard.resx">
+      <DependentUpon>AttendeeDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\CreateEvent.resx">
       <DependentUpon>CreateEvent.cs</DependentUpon>
     </EmbeddedResource>
