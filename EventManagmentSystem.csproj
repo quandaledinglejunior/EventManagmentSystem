@@ -107,6 +107,7 @@
     <Compile Include="Model\Events.cs" />
     <Compile Include="Model\Organizers.cs" />
     <Compile Include="Model\Session.cs" />
+    <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="View\AddOrganizer.cs">
       <SubType>Form</SubType>
