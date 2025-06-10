@@ -19,7 +19,9 @@ namespace EventManagmentSystem.View
 
         private void RevenueReport_Load(object sender, EventArgs e)
         {
+            DataTable dataTable = new Controller.ReportController().generateRevenuereport();
 
+            dataGridView1.DataSource = dataTable;
         }
     }
 }

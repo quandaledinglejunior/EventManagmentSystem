@@ -34,5 +34,10 @@ namespace EventManagmentSystem.View
         {
             changePanel(new AddOrganizer());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            changePanel(new RevenueReport());
+        }
     }
 }
