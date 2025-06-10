@@ -19,7 +19,7 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "INSERT INTO organizers (username, password, contactnumber, email) VALUES " +
+                string query = "INSERT INTO organizer (username, password, contactnumber, email) VALUES " +
                     "(@username, @password, @contact, @email)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", organizer.Name);
@@ -49,7 +49,7 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "SELECT password FROM organizers WHERE name = @name";
+                string query = "SELECT password FROM organizer WHERE name = @name";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", name);
                 string password = command.ExecuteScalar()?.ToString();
@@ -69,7 +69,7 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "SELECT id FROM organizers WHERE username = @name";
+                string query = "SELECT id FROM organizer WHERE name = @name";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", name);
                 int id = Convert.ToInt32(command.ExecuteScalar());
@@ -82,5 +82,39 @@ namespace EventManagmentSystem.Controller
                 return -1; // Return -1 to indicate an error
             }
         }
-    }
+
+        public Organizers getOrganizersfromId (int id)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "SELECT * FROM organizer WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Organizers organizer = new Organizers(
+                        reader["username"].ToString(),
+                        reader["password"].ToString(),
+                        reader["contactnumber"].ToString(),
+                        reader["email"].ToString()
+                    );
+                    connection.Close();
+                    return organizer;
+                }
+                else
+                {
+                    connection.Close();
+                    return null; // No organizer found with the given ID
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
+            }
+        }
 }

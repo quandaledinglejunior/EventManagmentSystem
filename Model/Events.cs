@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventManagmentSystem.Model
 {
-    class Event
+    class Events
     {
-        public Event(string name, DateTime date, string locationn, string description, Organizers organizer)
+        public Events(string name, DateTime date, string locationn, string description, Organizers organizer)
         {
             Name = name;
             Date = date;

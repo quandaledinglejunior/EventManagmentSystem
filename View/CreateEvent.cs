@@ -54,6 +54,7 @@ namespace EventManagmentSystem.View
              Events newEvent = new Events(eventName,  eventDate, eventDescription, eventLocation, organizers);
 
 
+
         }
     }
 }
