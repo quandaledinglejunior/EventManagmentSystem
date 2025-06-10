@@ -38,7 +38,7 @@ namespace EventManagmentSystem.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            changePanel(new PurchaseTickets());
+            changePanel(new PurchaseTickets(this));
         }
     }
 }

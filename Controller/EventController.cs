@@ -178,5 +178,39 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        public List<Events> getAllEvents()
+        {
+            List<Events> eventsList = new List<Events>();
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "SELECT * FROM events";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Events eventItem = new Events(
+                        reader["name"].ToString(),
+                        Convert.ToDateTime(reader["date"]),
+                        reader["location"].ToString(),
+                        reader["description"].ToString(),
+                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"]))
+                    )
+                    {
+                        Id = Convert.ToInt32(reader["id"]),
+                        Availability = Convert.ToBoolean(reader["availability"])
+                    };
+                    eventsList.Add(eventItem);
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            return eventsList;
+        }
     }
 }
