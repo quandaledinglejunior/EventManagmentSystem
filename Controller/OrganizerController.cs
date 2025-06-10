@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,5 +119,44 @@ namespace EventManagmentSystem.Controller
                 return null;
             }
         }
+
+        public DataTable getEventDetails(int event_id)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+
+                string query = @"SELECT 
+                                    a.name AS 'Attendee Name',
+                                    a.contactnumber AS 'Attendee Contact',
+                                    p.quantity AS 'Tickets Bought',
+                                    p.total AS Total,
+                                    t.tickettype AS 'Ticket Type'
+                                FROM 
+                                    purchase p
+                                JOIN 
+                                    attendee a ON p.attendee_id = a.id
+                                JOIN 
+                                    ticket t ON p.ticket_id = t.id
+                                WHERE 
+                                    t.event_id = @event_id;
+                                ";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@event_id", event_id);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                connection.Close();
+                return dataTable; // Return the DataTable containing event details
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return null; // Return null in case of an error
+            }
+        }
     }
+
+  
 }

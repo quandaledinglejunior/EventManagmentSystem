@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Model;
+﻿using EventManagmentSystem.Controller;
+using EventManagmentSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,15 @@ namespace EventManagmentSystem.View
             {
                 MessageBox.Show("No events found for the organizer.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int eventId = (int)comboBox1.SelectedValue;
+
+            DataTable dataTable = new OrganizerController().getEventDetails(eventId);
+
+            dataGridView1.DataSource = dataTable;
         }
     }
 }
