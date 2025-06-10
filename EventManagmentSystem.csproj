@@ -177,6 +177,9 @@
     <EmbeddedResource Include="View\CreateEvent.resx">
       <DependentUpon>CreateEvent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\EditEvent.resx">
+      <DependentUpon>EditEvent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
