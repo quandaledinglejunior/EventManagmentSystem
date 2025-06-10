@@ -33,7 +33,7 @@ namespace EventManagmentSystem.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            changePanel(new ViewPurchasedTicket());
         }
 
         private void button1_Click(object sender, EventArgs e)
