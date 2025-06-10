@@ -83,7 +83,7 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public Organizers getOrganizersfromId (int id)
+        public Organizers getOrganizersfromId(int id)
         {
             try
             {
@@ -97,11 +97,12 @@ namespace EventManagmentSystem.Controller
                 if (reader.Read())
                 {
                     Organizers organizer = new Organizers(
-                        reader["username"].ToString(),
+                        reader["name"].ToString(),
                         reader["password"].ToString(),
                         reader["contactnumber"].ToString(),
                         reader["email"].ToString()
                     );
+                    organizer.Id = Convert.ToInt32(reader["id"]);
                     connection.Close();
                     return organizer;
                 }
@@ -117,4 +118,5 @@ namespace EventManagmentSystem.Controller
                 return null;
             }
         }
+    }
 }

@@ -41,6 +41,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(64, 257);
@@ -51,6 +52,7 @@
             // 
             // textBox3
             // 
+            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox3.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(64, 283);
             this.textBox3.Name = "textBox3";
@@ -59,6 +61,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(64, 187);
@@ -70,6 +73,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(64, 343);
             this.button1.Name = "button1";
@@ -81,6 +85,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(64, 223);
             this.textBox2.Name = "textBox2";
@@ -103,7 +108,7 @@
             this.label2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(64, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 23);
+            this.label2.Size = new System.Drawing.Size(126, 23);
             this.label2.TabIndex = 25;
             this.label2.Text = "Events Date";
             // 
@@ -114,7 +119,7 @@
             this.label1.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(64, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 23);
+            this.label1.Size = new System.Drawing.Size(138, 23);
             this.label1.TabIndex = 24;
             this.label1.Text = "Events Name";
             // 

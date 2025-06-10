@@ -55,6 +55,10 @@ namespace EventManagmentSystem.View
 
 
 
+            new EventController().CreateEvent(newEvent);
+
+
+
         }
     }
 }

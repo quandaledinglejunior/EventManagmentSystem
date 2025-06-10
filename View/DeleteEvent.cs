@@ -37,7 +37,7 @@ namespace EventManagmentSystem.View
         private void button2_Click(object sender, EventArgs e)
         {
             int EventId = (int)comboBox1.SelectedValue;
-            Events selectedEvent = new Controller.EventController().getEventById(EventId);
+            new Controller.EventController().deleteEvent(EventId);
 
             DeleteEvent_Load(sender, e); 
         }
