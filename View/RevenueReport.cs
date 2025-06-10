@@ -16,5 +16,10 @@ namespace EventManagmentSystem.View
         {
             InitializeComponent();
         }
+
+        private void RevenueReport_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

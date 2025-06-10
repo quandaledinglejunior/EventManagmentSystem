@@ -257,6 +257,9 @@
     <EmbeddedResource Include="View\PurchaseTickets.resx">
       <DependentUpon>PurchaseTickets.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\RevenueReport.resx">
+      <DependentUpon>RevenueReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Signup.resx">
       <DependentUpon>Signup.cs</DependentUpon>
     </EmbeddedResource>
