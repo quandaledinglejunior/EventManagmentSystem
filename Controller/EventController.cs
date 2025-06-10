@@ -137,6 +137,7 @@ namespace EventManagmentSystem.Controller
                 {
                     MessageBox.Show("Failed to update event.");
                 }
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -150,6 +151,14 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
+
+                //Delete Ticket Associated with Event
+                string deleteTicketQuery = "DELETE FROM ticket WHERE event_id = @eventid";
+                MySqlCommand deleteTicketCommand = new MySqlCommand(deleteTicketQuery, connection);
+                deleteTicketCommand.Parameters.AddWithValue("@eventid", eventId);
+                deleteTicketCommand.ExecuteNonQuery();
+
+                //Delete Event
                 string query = "DELETE FROM events WHERE id = @eventid";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@eventid", eventId);
@@ -162,6 +171,7 @@ namespace EventManagmentSystem.Controller
                 {
                     MessageBox.Show("Failed to delete event.");
                 }
+                connection.Close();
             }
             catch (Exception ex)
             {
