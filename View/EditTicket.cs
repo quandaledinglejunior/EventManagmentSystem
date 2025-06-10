@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Model;
+﻿using EventManagmentSystem.Controller;
+using EventManagmentSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,6 +77,10 @@ namespace EventManagmentSystem.View
                 Available = available,
                 Id = ticketId
             };
+
+            new TicketController().UpdateTicket(updatedTicket);
+
+            EditTicket_Load(sender, e);
 
         }
     }

@@ -48,5 +48,10 @@ namespace EventManagmentSystem.View
             AddTicket_Load(sender, e);
 
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

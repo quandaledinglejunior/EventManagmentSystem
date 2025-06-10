@@ -45,5 +45,15 @@ namespace EventManagmentSystem.View
         {
             changePanel(new DeleteEvent());
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            changePanel(new AddTicket());
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            changePanel(new EditTicket());
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "INSERT INTO ticket (event_id, tickettype, price, quantity, available) VALUES (@eventid, @tickettype, @price, @quantity, @available)";
+                string query = "INSERT INTO ticket (event_id, tickettype, price, quantity, availability) VALUES (@eventid, @tickettype, @price, @quantity, @available)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@eventid", ticket.Event.Id);
                 command.Parameters.AddWithValue("@tickettype", ticket.TicketType);
@@ -66,7 +66,7 @@ namespace EventManagmentSystem.Controller
                     )
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Available = Convert.ToBoolean(reader["available"])
+                        Available = Convert.ToBoolean(reader["availability"])
                     };
                     return ticket;
                 }
@@ -85,7 +85,7 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "UPDATE ticket SET price = @price, quantity = @quantity, available = @available WHERE id = @id";
+                string query = "UPDATE ticket SET price = @price, quantity = @quantity, availability = @available WHERE id = @id";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", ticket.Id);
                 command.Parameters.AddWithValue("@price", ticket.Price);

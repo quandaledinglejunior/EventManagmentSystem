@@ -30,11 +30,11 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(252, 488);
             this.panel1.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(2, 324);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(249, 47);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Edit Tickets";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(2, 256);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(249, 47);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Add Tickets";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -89,24 +109,6 @@
             this.button1.Text = "Create Events";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(2, 256);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(249, 47);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Add Tickets";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(2, 324);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(249, 47);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Edit Tickets";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // OrganizerDashboard
             // 
