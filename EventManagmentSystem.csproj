@@ -132,6 +132,12 @@
     <Compile Include="View\CreateEvent.Designer.cs">
       <DependentUpon>CreateEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DeleteEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DeleteEvent.Designer.cs">
+      <DependentUpon>DeleteEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\EditEvent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CreateEvent.resx">
       <DependentUpon>CreateEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeleteEvent.resx">
+      <DependentUpon>DeleteEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditEvent.resx">
       <DependentUpon>EditEvent.cs</DependentUpon>
