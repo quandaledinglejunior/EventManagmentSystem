@@ -92,6 +92,7 @@
             this.button1.TabIndex = 38;
             this.button1.Text = "Edit Events";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
@@ -151,6 +152,9 @@
             // 
             this.comboBox2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "True",
+            "False"});
             this.comboBox2.Location = new System.Drawing.Point(61, 294);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(486, 31);

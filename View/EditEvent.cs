@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventManagmentSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,20 @@ namespace EventManagmentSystem.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            int eventId = (int)comboBox1.SelectedValue;
+            Events selectedEvent = new Controller.EventController().getEventById(eventId);
+            if (selectedEvent != null)
+            {
+                
+                textBox2.Text = selectedEvent.Description;
+                dateTimePicker1.Value = selectedEvent.Date;
+                textBox3.Text = selectedEvent.Locationn;
+                comboBox2.Text = selectedEvent.Availability.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Event not found.");
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,7 +83,48 @@ namespace EventManagmentSystem.View
 
         private void EditEvent_Load(object sender, EventArgs e)
         {
+            List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id);
 
+            if (events.Count > 0)
+            {
+                comboBox1.DataSource = events;
+                comboBox1.DisplayMember = "Name"; 
+                comboBox1.ValueMember = "Id"; 
+            }
+            else
+            {
+                MessageBox.Show("No events found for the organizer.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int eventId = (int)comboBox1.SelectedValue;
+            String eventName = comboBox1.Text;
+            DateTime dateTime = dateTimePicker1.Value;
+            string description = textBox2.Text;
+            string location = textBox3.Text;
+            string availability = comboBox2.Text;
+            Organizers organizer = new Controller.OrganizerController().getOrganizersfromId(Session.Id);
+
+            if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(location) || string.IsNullOrEmpty(availability))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+            try
+            {
+                Events updatedEvent = new Events(eventName, dateTime, description, location, organizer );
+                updatedEvent.Id = eventId;
+                updatedEvent.Availability = Convert.ToBoolean(availability);
+                new Controller.EventController().updateEvent(updatedEvent);
+                
+                this.Close(); // Close the form after updating
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating event: " + ex.Message);
+            }
         }
     }
 }
