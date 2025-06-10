@@ -109,6 +109,12 @@
     <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="View\Addticket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Addticket.Designer.cs">
+      <DependentUpon>Addticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddOrganizer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\Addticket.resx">
+      <DependentUpon>Addticket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddOrganizer.resx">
       <DependentUpon>AddOrganizer.cs</DependentUpon>
     </EmbeddedResource>

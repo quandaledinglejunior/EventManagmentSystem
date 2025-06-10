@@ -12,17 +12,17 @@ namespace EventManagmentSystem.Model
         public Events Event { get; set; }
 
         public string TicketType { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public int Quantity { get; set; }
         public int Available { get; set; }
 
-        public Ticket(Events eventItem, string ticketType, decimal price, int quantity, int available)
+        public Ticket(Events eventItem, string ticketType, double price, int quantity)
         {
             Event = eventItem;
             TicketType = ticketType;
             Price = price;
             Quantity = quantity;
-            Available = available;
+            Available = true;
         }
 
     }
