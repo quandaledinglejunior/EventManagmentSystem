@@ -101,6 +101,7 @@
     <Compile Include="Controller\AttendeeController.cs" />
     <Compile Include="Controller\EventController.cs" />
     <Compile Include="Controller\OrganizerController.cs" />
+    <Compile Include="Controller\PurchaseController.cs" />
     <Compile Include="Controller\TicketController.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="Model\Admin.cs" />

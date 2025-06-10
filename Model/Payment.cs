@@ -14,15 +14,15 @@ namespace EventManagmentSystem.Model
         public string CardNumber { get; set; }
         public string NameOnCard { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public double Amount { get; set; }
-        public Payment(int purchaseId, string cardType, string cardNumber, string nameOnCard, DateTime expiryDate, double amount)
+        public string Ccv { get; set; }
+        public Payment(int purchaseId, string cardType, string cardNumber, string nameOnCard, DateTime expiryDate, string ccv)
         {
             this.Purchase_id = purchaseId;
             this.CardType = cardType;
             this.CardNumber = cardNumber;
             this.NameOnCard = nameOnCard;
             this.ExpiryDate = expiryDate;
-            this.Amount = amount;
+            this.Ccv = ccv;
         }
     }
 }

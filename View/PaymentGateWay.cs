@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Model;
+﻿using EventManagmentSystem.Controller;
+using EventManagmentSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +48,7 @@ namespace EventManagmentSystem.View
 
             //Validate the card number
             string cardNumber = textBox1.Text;
-            if (string.IsNullOrEmpty(cardNumber) || cardNumber.Length == 16 || !cardNumber.All(char.IsDigit))
+            if (string.IsNullOrEmpty(cardNumber) || cardNumber.Length != 16 )
             {
                 MessageBox.Show("Please enter a valid card number.");
                 return;
@@ -79,6 +80,12 @@ namespace EventManagmentSystem.View
 
             Purchase purchase = new Purchase(ticketId, quantity);
             purchase.Total = totalAmount;
+
+            Payment payment = new Payment(0, cardType, cardNumber, nameOnCard, expiryDate, cvv);
+
+            new PurchaseController().CreatePurchase(purchase, payment);
+
+            this.Close();
 
         }
 

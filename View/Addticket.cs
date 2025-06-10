@@ -39,8 +39,8 @@ namespace EventManagmentSystem.View
             int eventId = (int)comboBox1.SelectedValue;
             Events selectedEvent = new Controller.EventController().getEventById(eventId);
             string ticketType = comboBox2.Text;
-            double price = double.Parse(textBox1.Text);
-            int quantity = int.Parse(textBox2.Text);
+            double price = double.Parse(textBox2.Text);
+            int quantity = int.Parse(textBox1.Text);
 
             Ticket ticket = new Ticket(selectedEvent, ticketType, price, quantity);
             new Controller.TicketController().CreateTicket(ticket);

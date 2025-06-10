@@ -140,5 +140,33 @@ namespace EventManagmentSystem.Controller
             }
             return null;
         }
+
+
+        public void reduceTicketQuantity(int ticketId, int quantity)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "UPDATE ticket SET quantity = quantity - @quantity WHERE id = @ticketid";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ticketid", ticketId);
+                command.Parameters.AddWithValue("@quantity", quantity);
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Ticket quantity reduced successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to reduce ticket quantity.");
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
     }
 }
