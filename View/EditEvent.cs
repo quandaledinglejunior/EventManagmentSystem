@@ -119,7 +119,7 @@ namespace EventManagmentSystem.View
                 updatedEvent.Availability = Convert.ToBoolean(availability);
                 new Controller.EventController().updateEvent(updatedEvent);
                 
-                this.Close(); // Close the form after updating
+                EditEvent_Load(sender, e);
             }
             catch (Exception ex)
             {

@@ -143,4 +143,30 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        public void deleteEvent(int eventId)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "DELETE FROM events WHERE id = @eventid";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@eventid", eventId);
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Event deleted successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete event.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+    }
 }
