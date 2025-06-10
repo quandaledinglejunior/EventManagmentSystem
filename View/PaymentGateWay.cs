@@ -12,9 +12,13 @@ namespace EventManagmentSystem.View
 {
     public partial class PaymentGateWay: Form
     {
-        public PaymentGateWay()
+        private int ticketId;
+        private int quantity;
+        public PaymentGateWay(int ticketId, int quantity)
         {
             InitializeComponent();
+            this.ticketId = ticketId;
+            this.quantity = quantity;
         }
 
         private void PaymentGateWay_Load(object sender, EventArgs e)

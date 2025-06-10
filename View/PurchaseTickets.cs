@@ -78,6 +78,7 @@ namespace EventManagmentSystem.View
 
             Ticket selectedTicket = new Controller.TicketController().getTickeybyEventandType(eventId, ticketType);
 
+            attendeeDashboard.paymentGateway(ticketId, quantity);
 
         }
     }

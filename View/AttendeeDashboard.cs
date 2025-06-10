@@ -40,5 +40,10 @@ namespace EventManagmentSystem.View
         {
             changePanel(new PurchaseTickets(this));
         }
+
+        public void paymentGateway(int ticket_id, int quantity)
+        {
+           changePanel(new PaymentGateWay(ticket_id, quantity));
+        }
     }
 }
