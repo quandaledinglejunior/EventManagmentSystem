@@ -43,6 +43,9 @@ namespace EventManagmentSystem.View
             int quantity = int.Parse(textBox2.Text);
 
             Ticket ticket = new Ticket(selectedEvent, ticketType, price, quantity);
+            new Controller.TicketController().CreateTicket(ticket);
+
+            AddTicket_Load(sender, e);
 
         }
     }
