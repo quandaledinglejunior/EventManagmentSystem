@@ -152,6 +152,12 @@
     <Compile Include="View\EditEvent.Designer.cs">
       <DependentUpon>EditEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditTicket.Designer.cs">
+      <DependentUpon>EditTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditEvent.resx">
       <DependentUpon>EditEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditTicket.resx">
+      <DependentUpon>EditTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -14,7 +14,7 @@ namespace EventManagmentSystem.Model
         public string TicketType { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        public int Available { get; set; }
+        public bool Available { get; set; }
 
         public Ticket(Events eventItem, string ticketType, double price, int quantity)
         {
