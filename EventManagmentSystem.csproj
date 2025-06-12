@@ -188,6 +188,12 @@
     <Compile Include="View\PurchaseTickets.Designer.cs">
       <DependentUpon>PurchaseTickets.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\RemoveOrganizer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RemoveOrganizer.Designer.cs">
+      <DependentUpon>RemoveOrganizer.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RevenueReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\PurchaseTickets.resx">
       <DependentUpon>PurchaseTickets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RemoveOrganizer.resx">
+      <DependentUpon>RemoveOrganizer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RevenueReport.resx">
       <DependentUpon>RevenueReport.cs</DependentUpon>

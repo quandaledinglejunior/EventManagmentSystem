@@ -3,9 +3,6 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EventManagmentSystem.Controller
@@ -44,6 +41,35 @@ namespace EventManagmentSystem.Controller
             }
         }
 
+
+        public void DeleteOrganizer(string name)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "DELETE FROM organizer WHERE name = @name";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@name", name);
+
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Organizer deleted successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete organizer.");
+                }
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
         public string getOrganizerPassword(string name)
         {
             try
@@ -63,6 +89,34 @@ namespace EventManagmentSystem.Controller
                 return null;
             }
         }
+
+        public List<string> GetAllOrganizerUsernames()
+        {
+            List<string> usernames = new List<string>();
+
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+                connection.Open();
+                string query = "SELECT name FROM organizer";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    usernames.Add(reader["name"].ToString());
+                }
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            return usernames;
+        }
+
 
         public int getOrganizerId(string name)
         {
@@ -157,6 +211,4 @@ namespace EventManagmentSystem.Controller
             }
         }
     }
-
-  
 }

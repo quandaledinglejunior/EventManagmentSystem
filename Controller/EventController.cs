@@ -2,9 +2,6 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EventManagmentSystem.Controller
@@ -40,6 +37,53 @@ namespace EventManagmentSystem.Controller
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        public void DeleteEventsByOrganizer(string organizerName)
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(new DbConnection().connectionString);
+                connection.Open();
+
+                // First get organizer ID from name
+                string getIdQuery = "SELECT id FROM organizer WHERE name = @name";
+                MySqlCommand getIdCmd = new MySqlCommand(getIdQuery, connection);
+                getIdCmd.Parameters.AddWithValue("@name", organizerName);
+                object result = getIdCmd.ExecuteScalar();
+
+                if (result == null)
+                {
+                    MessageBox.Show("Organizer not found.");
+                    return;
+                }
+
+                int organizerId = Convert.ToInt32(result);
+
+                // 🔸 Delete tickets for all events created by this organizer
+                string deleteTicketsQuery = @"
+            DELETE FROM ticket 
+            WHERE event_id IN (
+                SELECT id FROM events WHERE organizer_id = @orgId
+            )";
+                MySqlCommand deleteTicketsCmd = new MySqlCommand(deleteTicketsQuery, connection);
+                deleteTicketsCmd.Parameters.AddWithValue("@orgId", organizerId);
+                deleteTicketsCmd.ExecuteNonQuery();
+
+                // 🔸 Delete events created by the organizer
+                string deleteEventsQuery = "DELETE FROM events WHERE organizer_id = @orgId";
+                MySqlCommand deleteEventsCmd = new MySqlCommand(deleteEventsQuery, connection);
+                deleteEventsCmd.Parameters.AddWithValue("@orgId", organizerId);
+                int rowsAffected = deleteEventsCmd.ExecuteNonQuery();
+
+                MessageBox.Show($"{rowsAffected} event(s) deleted.");
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting events: " + ex.Message);
             }
         }
 

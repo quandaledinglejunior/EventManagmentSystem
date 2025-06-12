@@ -16,7 +16,6 @@ namespace EventManagmentSystem.Controller
         {
             try
             {
-                //i want to add purchase and get the purchase id
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
 
@@ -33,7 +32,7 @@ namespace EventManagmentSystem.Controller
                     // Get the last inserted ID
                     command.CommandText = "SELECT LAST_INSERT_ID()";
                     purchase.Id = Convert.ToInt32(command.ExecuteScalar());
-                    // Now insert into payment table
+                    // insert into payment table
                     query = "INSERT INTO payment (purchase_id, type, number, name, expiry, ccv) VALUES (@purchaseId, @type, @number, @name, @expiry, @ccv)";
                     command.CommandText = query;
                     command.Parameters.Clear();
