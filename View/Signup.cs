@@ -47,5 +47,10 @@ namespace EventManagmentSystem.View
             new Form1().Show();
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

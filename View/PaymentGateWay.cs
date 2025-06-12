@@ -98,5 +98,10 @@ namespace EventManagmentSystem.View
         {
             radioButton2.Checked = false;
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
