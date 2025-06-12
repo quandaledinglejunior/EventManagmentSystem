@@ -36,19 +36,22 @@ namespace EventManagmentSystem.View
                 return;
             }
 
+            OrganizerController organizerController = new OrganizerController();
+            EventController eventController = new EventController();
+
             if (removeEvents)
             {
-                new EventController().DeleteEventsByOrganizer(selectedOrganizer);
+                eventController.DeleteEventsByOrganizer(selectedOrganizer);
             }
 
             if (removeOrganizer)
             {
-                new OrganizerController().DeleteOrganizer(selectedOrganizer);
+                organizerController.DeleteOrganizer(selectedOrganizer);
             }
 
-            // Refresh comboBox after deletion
+            // Refresh dropdown after deletion
             comboBoxRO.DataSource = null;
-            comboBoxRO.DataSource = new OrganizerController().GetAllOrganizerUsernames();
+            comboBoxRO.DataSource = organizerController.GetAllOrganizerUsernames();
         }
 
         private void comboBoxRO_SelectedIndexChanged(object sender, EventArgs e) { }

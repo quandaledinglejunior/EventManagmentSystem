@@ -48,7 +48,6 @@ namespace EventManagmentSystem.Controller
                 MySqlConnection connection = new MySqlConnection(new DbConnection().connectionString);
                 connection.Open();
 
-                // First get organizer ID from name
                 string getIdQuery = "SELECT id FROM organizer WHERE name = @name";
                 MySqlCommand getIdCmd = new MySqlCommand(getIdQuery, connection);
                 getIdCmd.Parameters.AddWithValue("@name", organizerName);
@@ -62,23 +61,63 @@ namespace EventManagmentSystem.Controller
 
                 int organizerId = Convert.ToInt32(result);
 
-                // 🔸 Delete tickets for all events created by this organizer
-                string deleteTicketsQuery = @"
-            DELETE FROM ticket 
-            WHERE event_id IN (
-                SELECT id FROM events WHERE organizer_id = @orgId
-            )";
-                MySqlCommand deleteTicketsCmd = new MySqlCommand(deleteTicketsQuery, connection);
-                deleteTicketsCmd.Parameters.AddWithValue("@orgId", organizerId);
-                deleteTicketsCmd.ExecuteNonQuery();
+                // Get all event IDs for this organizer
+                string getEventIdsQuery = "SELECT id FROM events WHERE organizer_id = @orgId";
+                MySqlCommand getEventIdsCmd = new MySqlCommand(getEventIdsQuery, connection);
+                getEventIdsCmd.Parameters.AddWithValue("@orgId", organizerId);
+                MySqlDataReader reader = getEventIdsCmd.ExecuteReader();
 
-                // 🔸 Delete events created by the organizer
+                List<int> eventIds = new List<int>();
+                while (reader.Read())
+                {
+                    eventIds.Add(Convert.ToInt32(reader["id"]));
+                }
+                reader.Close();
+
+                foreach (int eventId in eventIds)
+                {
+                    // Get all ticket IDs for this event
+                    string getTicketIdsQuery = "SELECT id FROM ticket WHERE event_id = @eventId";
+                    MySqlCommand getTicketIdsCmd = new MySqlCommand(getTicketIdsQuery, connection);
+                    getTicketIdsCmd.Parameters.AddWithValue("@eventId", eventId);
+                    MySqlDataReader ticketReader = getTicketIdsCmd.ExecuteReader();
+
+                    List<int> ticketIds = new List<int>();
+                    while (ticketReader.Read())
+                    {
+                        ticketIds.Add(Convert.ToInt32(ticketReader["id"]));
+                    }
+                    ticketReader.Close();
+
+                    foreach (int ticketId in ticketIds)
+                    {
+                        // Delete payments (linked to purchases)
+                        string deletePaymentsQuery = "DELETE FROM payment WHERE purchase_id IN (SELECT id FROM purchase WHERE ticket_id = @ticketId)";
+                        MySqlCommand deletePaymentsCmd = new MySqlCommand(deletePaymentsQuery, connection);
+                        deletePaymentsCmd.Parameters.AddWithValue("@ticketId", ticketId);
+                        deletePaymentsCmd.ExecuteNonQuery();
+
+                        // elete purchases
+                        string deletePurchasesQuery = "DELETE FROM purchase WHERE ticket_id = @ticketId";
+                        MySqlCommand deletePurchasesCmd = new MySqlCommand(deletePurchasesQuery, connection);
+                        deletePurchasesCmd.Parameters.AddWithValue("@ticketId", ticketId);
+                        deletePurchasesCmd.ExecuteNonQuery();
+                    }
+
+                    // Delete tickets
+                    string deleteTicketsQuery = "DELETE FROM ticket WHERE event_id = @eventId";
+                    MySqlCommand deleteTicketsCmd = new MySqlCommand(deleteTicketsQuery, connection);
+                    deleteTicketsCmd.Parameters.AddWithValue("@eventId", eventId);
+                    deleteTicketsCmd.ExecuteNonQuery();
+                }
+
+                // Delete events
                 string deleteEventsQuery = "DELETE FROM events WHERE organizer_id = @orgId";
                 MySqlCommand deleteEventsCmd = new MySqlCommand(deleteEventsQuery, connection);
                 deleteEventsCmd.Parameters.AddWithValue("@orgId", organizerId);
-                int rowsAffected = deleteEventsCmd.ExecuteNonQuery();
+                int deleted = deleteEventsCmd.ExecuteNonQuery();
 
-                MessageBox.Show($"{rowsAffected} event(s) deleted.");
+                MessageBox.Show($"{deleted} event(s) and all related data deleted.");
                 connection.Close();
             }
             catch (Exception ex)
@@ -86,6 +125,7 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error deleting events: " + ex.Message);
             }
         }
+
 
         public List<Events> getEventsbyOrganizer(int organizerId)
         {

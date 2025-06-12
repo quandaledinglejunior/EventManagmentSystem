@@ -39,15 +39,27 @@ namespace EventManagmentSystem.View
             int eventId = (int)comboBox1.SelectedValue;
             Events selectedEvent = new Controller.EventController().getEventById(eventId);
             string ticketType = comboBox2.Text;
-            double price = double.Parse(textBox2.Text);
-            int quantity = int.Parse(textBox1.Text);
+
+            // TryParse price
+            if (!double.TryParse(textBox2.Text, out double price) || price <= 0)
+            {
+                MessageBox.Show("Please enter a valid price");
+                return;
+            }
+
+            // TryParse quantity
+            if (!int.TryParse(textBox1.Text, out int quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Please enter a valid quantity");
+                return;
+            }
 
             Ticket ticket = new Ticket(selectedEvent, ticketType, price, quantity);
             new Controller.TicketController().CreateTicket(ticket);
 
-            AddTicket_Load(sender, e);
-
+            AddTicket_Load(sender, e); // refresh
         }
+
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -61,12 +61,16 @@ namespace EventManagmentSystem.View
         {
             int eventId = (int)comboBox1.SelectedValue;
             string ticketType = comboBox2.Text;
-            double price = textBox1.Text == "" ? 0 : double.Parse(textBox1.Text);
-            int quantity = textBox2.Text == "" ? 0 : int.Parse(textBox2.Text);
 
-            if (!double.TryParse(textBox1.Text, out price) || !int.TryParse(textBox2.Text, out quantity))
+            if (!double.TryParse(textBox1.Text, out double price) || price <=0)
             {
-                MessageBox.Show("Please enter valid price and quantity.");
+                MessageBox.Show("Please Enter Valid Price");
+                return;
+            }
+
+            if (!int.TryParse(textBox2.Text, out int quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Please enter valid quantity.");
                 return;
             }
 
@@ -81,6 +85,11 @@ namespace EventManagmentSystem.View
             new TicketController().UpdateTicket(updatedTicket);
 
             EditTicket_Load(sender, e);
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

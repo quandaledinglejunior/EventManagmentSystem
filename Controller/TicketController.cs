@@ -164,5 +164,29 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        //public void DeleteTicketsByOrganizerId(int organizerId)
+        //{
+        //    try
+        //    {
+        //        MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
+        //        connection.Open();
+
+        //        string query = @"DELETE t FROM ticket t
+        //                 JOIN events e ON t.event_id = e.id
+        //                 WHERE e.organizer_id = @orgId";
+
+        //        MySqlCommand command = new MySqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("@orgId", organizerId);
+
+        //        int result = command.ExecuteNonQuery();
+        //        MessageBox.Show($"{result} ticket(s) deleted.");
+        //        connection.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error deleting tickets: " + ex.Message);
+        //    }
+        //}
     }
 }

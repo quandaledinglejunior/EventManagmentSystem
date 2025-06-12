@@ -66,5 +66,31 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        //public void DeletePurchasesByOrganizerId(int organizerId)
+        //{
+        //    try
+        //    {
+        //        MySqlConnection connection = new MySqlConnection(new DbConnection().connectionString);
+        //        connection.Open();
+
+        //        string query = @"DELETE p FROM purchase p
+        //                 JOIN ticket t ON p.ticket_id = t.id
+        //                 JOIN events e ON t.event_id = e.id
+        //                 WHERE e.organizer_id = @orgId";
+
+        //        MySqlCommand cmd = new MySqlCommand(query, connection);
+        //        cmd.Parameters.AddWithValue("@orgId", organizerId);
+        //        int count = cmd.ExecuteNonQuery();
+        //        MessageBox.Show($"{count} purchase(s) deleted.");
+        //        connection.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error deleting purchases: " + ex.Message);
+        //    }
+        //}
+
+
     }
 }

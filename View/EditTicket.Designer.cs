@@ -45,9 +45,10 @@
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(65, 382);
+            this.button1.Location = new System.Drawing.Point(98, 597);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(505, 39);
+            this.button1.Size = new System.Drawing.Size(758, 61);
             this.button1.TabIndex = 65;
             this.button1.Text = "Edit Ticket";
             this.button1.UseVisualStyleBackColor = true;
@@ -61,9 +62,10 @@
             this.comboBox3.Items.AddRange(new object[] {
             "True",
             "False"});
-            this.comboBox3.Location = new System.Drawing.Point(65, 327);
+            this.comboBox3.Location = new System.Drawing.Point(98, 511);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(505, 31);
+            this.comboBox3.Size = new System.Drawing.Size(756, 44);
             this.comboBox3.TabIndex = 64;
             // 
             // label5
@@ -71,9 +73,10 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(65, 301);
+            this.label5.Location = new System.Drawing.Point(98, 470);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 23);
+            this.label5.Size = new System.Drawing.Size(185, 36);
             this.label5.TabIndex = 63;
             this.label5.Text = "Availability";
             // 
@@ -82,9 +85,10 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(65, 231);
+            this.label4.Location = new System.Drawing.Point(98, 361);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 23);
+            this.label4.Size = new System.Drawing.Size(150, 36);
             this.label4.TabIndex = 62;
             this.label4.Text = "Quantity";
             // 
@@ -92,9 +96,10 @@
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox1.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(65, 257);
+            this.textBox1.Location = new System.Drawing.Point(98, 402);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(509, 31);
+            this.textBox1.Size = new System.Drawing.Size(762, 45);
             this.textBox1.TabIndex = 61;
             // 
             // label3
@@ -102,9 +107,10 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(65, 162);
+            this.label3.Location = new System.Drawing.Point(98, 253);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 23);
+            this.label3.Size = new System.Drawing.Size(92, 36);
             this.label3.TabIndex = 60;
             this.label3.Text = "Price";
             // 
@@ -112,10 +118,12 @@
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(65, 188);
+            this.textBox2.Location = new System.Drawing.Point(98, 294);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(509, 31);
+            this.textBox2.Size = new System.Drawing.Size(762, 45);
             this.textBox2.TabIndex = 59;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // comboBox2
             // 
@@ -125,9 +133,10 @@
             this.comboBox2.Items.AddRange(new object[] {
             "General",
             "VIP"});
-            this.comboBox2.Location = new System.Drawing.Point(65, 117);
+            this.comboBox2.Location = new System.Drawing.Point(98, 183);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(505, 31);
+            this.comboBox2.Size = new System.Drawing.Size(756, 44);
             this.comboBox2.TabIndex = 58;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -136,9 +145,10 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 91);
+            this.label2.Location = new System.Drawing.Point(98, 142);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 23);
+            this.label2.Size = new System.Drawing.Size(196, 36);
             this.label2.TabIndex = 57;
             this.label2.Text = "Ticket Type";
             // 
@@ -147,9 +157,10 @@
             this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBox1.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 46);
+            this.comboBox1.Location = new System.Drawing.Point(98, 72);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(505, 31);
+            this.comboBox1.Size = new System.Drawing.Size(756, 44);
             this.comboBox1.TabIndex = 56;
             // 
             // label1
@@ -157,17 +168,18 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(65, 20);
+            this.label1.Location = new System.Drawing.Point(98, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 23);
+            this.label1.Size = new System.Drawing.Size(216, 36);
             this.label1.TabIndex = 55;
             this.label1.Text = "Events Name";
             // 
             // EditTicket
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 441);
+            this.ClientSize = new System.Drawing.Size(957, 689);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label5);
@@ -180,6 +192,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "EditTicket";
             this.Text = "EditTicket";
             this.Load += new System.EventHandler(this.EditTicket_Load);
