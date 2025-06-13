@@ -46,12 +46,17 @@ namespace EventManagmentSystem.View
 
             if (removeOrganizer)
             {
+                eventController.DeleteEventsByOrganizer(selectedOrganizer);
                 organizerController.DeleteOrganizer(selectedOrganizer);
             }
 
             // Refresh dropdown after deletion
             comboBoxRO.DataSource = null;
             comboBoxRO.DataSource = organizerController.GetAllOrganizerUsernames();
+
+            checkBox1RO.Checked = false;
+            checkBox2RO.Checked = false;
+
         }
 
         private void comboBoxRO_SelectedIndexChanged(object sender, EventArgs e) { }

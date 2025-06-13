@@ -125,6 +125,13 @@ namespace EventManagmentSystem.View
             {
                 MessageBox.Show("Error updating event: " + ex.Message);
             }
+
+            comboBox1.SelectedIndex = -1;
+            textBox2.Clear();
+            dateTimePicker1.Value = DateTime.Now;
+            textBox3.Clear();
+            comboBox2.SelectedIndex = -1;
+
         }
     }
 }

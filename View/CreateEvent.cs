@@ -57,7 +57,9 @@ namespace EventManagmentSystem.View
 
             new EventController().CreateEvent(newEvent);
 
-
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
 
         }
     }

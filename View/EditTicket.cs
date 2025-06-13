@@ -86,6 +86,8 @@ namespace EventManagmentSystem.View
 
             EditTicket_Load(sender, e);
 
+            textBox1.Clear();
+            textBox2.Clear();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

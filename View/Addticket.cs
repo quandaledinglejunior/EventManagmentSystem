@@ -58,6 +58,13 @@ namespace EventManagmentSystem.View
             new Controller.TicketController().CreateTicket(ticket);
 
             AddTicket_Load(sender, e); // refresh
+
+
+            comboBox1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
+            textBox1.Clear();
+            textBox2.Clear();
+
         }
 
 
