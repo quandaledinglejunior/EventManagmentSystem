@@ -17,13 +17,14 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "INSERT INTO organizer (name, password, contactnumber, email) VALUES " +
-                    "(@username, @password, @contact, @email)";
+                string query = "INSERT INTO organizer (name, password, contactnumber, email, gender) VALUES " +
+                    "(@username, @password, @contact, @email, @Gender)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", organizer.Name);
                 command.Parameters.AddWithValue("@password", organizer.Password);
                 command.Parameters.AddWithValue("@contact", organizer.ContactNumbers);
                 command.Parameters.AddWithValue("@email", organizer.Email);
+                command.Parameters.AddWithValue("@gender", organizer.Gender);
                 int result = command.ExecuteNonQuery();
                 if (result > 0)
                 {
@@ -180,7 +181,8 @@ namespace EventManagmentSystem.Controller
                         reader["name"].ToString(),
                         reader["password"].ToString(),
                         reader["contactnumber"].ToString(),
-                        reader["email"].ToString()
+                        reader["email"].ToString(),
+                        reader["gender"].ToString()
                     );
                     organizer.Id = Convert.ToInt32(reader["id"]);
                     connection.Close();

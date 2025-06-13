@@ -8,12 +8,14 @@ namespace EventManagmentSystem.Model
 {
     class Attendee : User
     {
-        public Attendee(string name, string password, string contactnumber, string gender) : base(name, password)
+        public Attendee(string name, string password, string contactnumber, string email, string gender) : base(name, password)
         {
             ContactNumbers = contactnumber;
+            Email = email;
             Gender = gender;
         }
         public string ContactNumbers { get; set; }
+        public string Email { get; set; }
         public string Gender { get; set; }
 
        

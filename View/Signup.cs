@@ -30,16 +30,17 @@ namespace EventManagmentSystem.View
             string username = textBox1.Text;
             string password = textBox2.Text;
             string contact = textBox3.Text;
+            string email = textBox4.Text;
             string gender = comboBox1.Text;
 
             // Check if any field is empty
-            if (username == null && password == null && contact == null && gender == null)
+            if (username == null || password == null || contact == null || gender == null || email == null)
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            Attendee attendee = new Attendee(username, password, contact, gender);
+            Attendee attendee = new Attendee(username, password, contact, email, gender);
 
             new AttendeeController().addAttendee(attendee);
 
@@ -49,6 +50,11 @@ namespace EventManagmentSystem.View
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }

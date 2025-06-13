@@ -24,11 +24,12 @@ namespace EventManagmentSystem.View
             string password = textBox2.Text;
             string contact = textBox3.Text;
             string email = textBox4.Text;
+            string gender = comboBox1.Text;
 
-            Organizers organizer = new Organizers(username, password, contact, email);
+            Organizers organizer = new Organizers(username, password, contact, email, gender);
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
-                string.IsNullOrEmpty(contact) || string.IsNullOrEmpty(email))
+                string.IsNullOrEmpty(contact) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(gender))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
@@ -50,6 +51,16 @@ namespace EventManagmentSystem.View
         }
 
         private void AddOrganizer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }

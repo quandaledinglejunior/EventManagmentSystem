@@ -20,13 +20,14 @@ namespace EventManagmentSystem.Controller
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
 
-                string query = "INSERT INTO attendee (name, password, contactnumber, gender) value " +
-                    "(@name, @pasword, @contactnumber, @gender)";
+                string query = "INSERT INTO attendee (name, password, contactnumber, email, gender) value " +
+                    "(@name, @pasword, @contactnumber, @email, @gender)";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", attendee.Name);
                 command.Parameters.AddWithValue("@pasword", attendee.Password);
                 command.Parameters.AddWithValue("@contactnumber", attendee.ContactNumbers);
+                command.Parameters.AddWithValue("@email", attendee.Email);
                 command.Parameters.AddWithValue("@gender", attendee.Gender);
 
                 int result = command.ExecuteNonQuery();
