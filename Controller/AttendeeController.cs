@@ -88,6 +88,41 @@ namespace EventManagmentSystem.Controller
             }
         }
 
+        public List<string> GetAllAttendeeUsernames()
+        {
+            var usernames = new List<string>();
+
+            try
+            {   //checking 'using' instead of connection.open and .close
+                using (var connection = new MySqlConnection(dbConnection.connectionString))
+                {
+                    connection.Open();
+                    var command = new MySqlCommand("SELECT name FROM attendee", connection);
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                        usernames.Add(reader.GetString(0));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            return usernames;
+        }
+
+        public void DeleteAttendee(string name)
+        {
+            using (var connection = new MySqlConnection(dbConnection.connectionString))
+            {
+                connection.Open();
+                var cmd = new MySqlCommand("DELETE FROM attendee WHERE name = @name", connection);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public DataTable getAlltheTicketsByAttendee(int attendeeId)
         {
             List<Ticket> tickets = new List<Ticket>();

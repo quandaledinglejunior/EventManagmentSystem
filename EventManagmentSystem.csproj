@@ -302,5 +302,8 @@
   <ItemGroup>
     <None Include="Resources\signup.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -67,6 +67,22 @@ namespace EventManagmentSystem.Controller
             }
         }
 
+        public void DeletePurchasesByAttendee(int attendeeId)
+        {
+            using (var connection = new MySqlConnection(dbConnection.connectionString))
+            {
+                connection.Open();
+                var cmd1 = new MySqlCommand("DELETE FROM payment WHERE purchase_id IN (SELECT id FROM purchase WHERE attendee_id = @id)", connection);
+                cmd1.Parameters.AddWithValue("@id", attendeeId);
+                cmd1.ExecuteNonQuery();
+
+                var cmd2 = new MySqlCommand("DELETE FROM purchase WHERE attendee_id = @id", connection);
+                cmd2.Parameters.AddWithValue("@id", attendeeId);
+                cmd2.ExecuteNonQuery();
+            }
+        }
+
+
         //public void DeletePurchasesByOrganizerId(int organizerId)
         //{
         //    try

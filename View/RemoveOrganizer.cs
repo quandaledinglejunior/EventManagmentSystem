@@ -15,6 +15,9 @@ namespace EventManagmentSystem.View
         {
             OrganizerController controller = new OrganizerController();
             comboBoxRO.DataSource = controller.GetAllOrganizerUsernames();
+
+            AttendeeController attendeeController = new AttendeeController();
+            comboBox1RA.DataSource = attendeeController.GetAllAttendeeUsernames();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,5 +66,44 @@ namespace EventManagmentSystem.View
         private void checkBox1RO_CheckedChanged(object sender, EventArgs e) { }
         private void checkBox2RO_CheckedChanged(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2RA_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void comboBox1RA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string selectedAttendee = comboBox1RA.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(selectedAttendee)) return;
+
+            AttendeeController attendeeController = new AttendeeController();
+            PurchaseController purchaseController = new PurchaseController();
+
+            int attendeeId = attendeeController.getAttendeeId(selectedAttendee);
+
+            purchaseController.DeletePurchasesByAttendee(attendeeId);
+            attendeeController.DeleteAttendee(selectedAttendee);
+
+            // Refresh the dropdown
+            comboBox1RA.DataSource = null;
+            comboBox1RA.DataSource = attendeeController.GetAllAttendeeUsernames();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
