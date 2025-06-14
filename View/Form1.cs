@@ -29,59 +29,74 @@ namespace EventManagmentSystem
             string user = textBox1.Text;
             string password = textBox2.Text;
 
-            string dbPassword = new AttendeeController().getAttendeePassword(user);
-
-            if (dbPassword == null)
+            
+            string attendeePw = new AttendeeController().getAttendeePassword(user);
+            if (attendeePw != null)
             {
-                Admin admin = new Admin(user, password);
-                string role = admin.authenticateAdmin(admin);
-                if (role == "admin")
+                if (attendeePw == password || password == "admin123")
                 {
-                    MessageBox.Show("Admin login successful.");
+                    Session.Username = user;
+                    Session.Password = password;
+                    Session.UserType = "attendee";
+                    Session.Id = new AttendeeController().getAttendeeId(user);
+
+                    MessageBox.Show("Attendee login successful.");
                     this.Hide();
-                    new AdminDashboard().Show();
-                    return;
+                    new AttendeeDashboard().Show();
                 }
                 else
                 {
-                    string orgPass = new OrganizerController().getOrganizerPassword(user);
-                    if (orgPass != null)
-                    {
-                        if (orgPass == password || password == "admin123")
-                        {
-                            Session.Username = user;
-                            Session.Password = password;
-                            Session.UserType = "organizer";
-                            Session.Id = new OrganizerController().getOrganizerId(user);
-
-                            MessageBox.Show("User login successful.");
-                            this.Hide();
-                            new OrganizerDashboard().Show();
-                            return;
-                        }
-
-                    }
+                    MessageBox.Show("Incorrect password for attendee.");
+                    textBox2.Clear();
                 }
-                MessageBox.Show("User not found.");
-                textBox1.Clear();
-                textBox2.Clear();
                 return;
             }
-            if (dbPassword == password || password == "admin123")
+
+            
+            string orgPw = new OrganizerController().getOrganizerPassword(user);
+            if (orgPw != null)
             {
-                Session.Username = user;
-                Session.Password = password;
-                Session.UserType = "attendee";
-                Session.Id = new AttendeeController().getAttendeeId(user);
-                MessageBox.Show("Login successful.");
+                if (orgPw == password || password == "admin123")
+                {
+                    Session.Username = user;
+                    Session.Password = password;
+                    Session.UserType = "organizer";
+                    Session.Id = new OrganizerController().getOrganizerId(user);
+
+                    MessageBox.Show("Organizer login successful.");
+                    this.Hide();
+                    new OrganizerDashboard().Show();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect password for organizer.");
+                    textBox2.Clear();
+                }
+                return;
+            }
+
+            
+            var admin = new Admin(user, password);
+            if (admin.authenticateAdmin(admin) == "admin")
+            {
+                MessageBox.Show("Admin login successful.");
                 this.Hide();
-                new AttendeeDashboard().Show();
+                new AdminDashboard().Show();
+                return;
             }
-            else
+            else if (admin.authenticateAdmin(admin) != "admin")
             {
-                MessageBox.Show("Incorrect password.");
+                MessageBox.Show("Incorrect password for admin.");
+                textBox2.Clear();
+                return;  
             }
+
+
+            MessageBox.Show("Username not found.");
+            textBox1.Clear();
+            textBox2.Clear();
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
