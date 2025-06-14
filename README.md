@@ -17,7 +17,8 @@ CREATE TABLE organizer(
     name varchar(100),
     password varchar(16),
     contactnumber varchar(20),
-    email varchar (100)
+    email varchar (100),
+    gender varchar(20)
 );
 
 CREATE TABLE events(
