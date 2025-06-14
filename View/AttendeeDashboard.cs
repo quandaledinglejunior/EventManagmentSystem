@@ -51,5 +51,10 @@ namespace EventManagmentSystem.View
             this.Hide();
             new Form1().Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            changePanel(new EditProfile());
+        }
     }
 }

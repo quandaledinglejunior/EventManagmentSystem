@@ -181,5 +181,69 @@ namespace EventManagmentSystem.Controller
             }
             
         }
+
+        public Attendee GetAttendeeById(int id)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(dbConnection.connectionString))
+                {
+                    conn.Open();
+                    var cmd = new MySqlCommand(
+                        "SELECT * FROM attendee WHERE id = @id",
+                        conn
+                    );
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var at = new Attendee(
+                                reader["name"].ToString(),
+                                reader["password"].ToString(),
+                                reader["contactnumber"].ToString(),
+                                reader["email"].ToString(),
+                                reader["gender"].ToString()
+                            );
+                            at.Id = Convert.ToInt32(reader["id"]);
+                            return at;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching attendee: " + ex.Message);
+            }
+            return null;
+        }
+
+        public void UpdateAttendee(int id, string name, string password, string contact, string email, string gender)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(dbConnection.connectionString))
+                {
+                    conn.Open();
+                    var cmd = new MySqlCommand(
+                        "UPDATE attendee SET name=@nm, password=@pw, contactnumber=@ct, email=@em, gender=@gn WHERE id=@id",
+                        conn
+                    );
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nm", name);
+                    cmd.Parameters.AddWithValue("@pw", password);
+                    cmd.Parameters.AddWithValue("@ct", contact);
+                    cmd.Parameters.AddWithValue("@em", email);
+                    cmd.Parameters.AddWithValue("@gn", gender);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message);
+            }
+        }
+
     }
 }
