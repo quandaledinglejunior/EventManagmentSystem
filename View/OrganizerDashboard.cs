@@ -60,5 +60,11 @@ namespace EventManagmentSystem.View
         {
             changePanel(new ViewEventDetails());
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Form1().Show();
+        }
     }
 }

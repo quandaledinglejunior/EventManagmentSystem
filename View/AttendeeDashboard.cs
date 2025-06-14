@@ -45,5 +45,11 @@ namespace EventManagmentSystem.View
         {
            changePanel(new PaymentGateWay(ticket_id, quantity));
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Form1().Show();
+        }
     }
 }

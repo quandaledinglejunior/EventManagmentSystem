@@ -54,5 +54,12 @@ namespace EventManagmentSystem.View
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 loginForm = new Form1();
+            loginForm.Show();
+        }
     }
 }
