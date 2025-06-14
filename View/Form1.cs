@@ -26,10 +26,15 @@ namespace EventManagmentSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string user = textBox1.Text;
-            string password = textBox2.Text;
+            string user = textBox1.Text.Trim();
+            string password = textBox2.Text.Trim();
 
-            
+            if (string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Please enter both username and password.");
+                return;
+            }
+
             string attendeePw = new AttendeeController().getAttendeePassword(user);
             if (attendeePw != null)
             {
@@ -40,7 +45,10 @@ namespace EventManagmentSystem
                     Session.UserType = "attendee";
                     Session.Id = new AttendeeController().getAttendeeId(user);
 
-                    MessageBox.Show("Attendee login successful.");
+                    MessageBox.Show(password == "admin123"
+                        ? "Logged into Attendee as Admin"
+                        : "Attendee login successful.");
+
                     this.Hide();
                     new AttendeeDashboard().Show();
                 }
@@ -52,7 +60,6 @@ namespace EventManagmentSystem
                 return;
             }
 
-            
             string orgPw = new OrganizerController().getOrganizerPassword(user);
             if (orgPw != null)
             {
@@ -63,7 +70,10 @@ namespace EventManagmentSystem
                     Session.UserType = "organizer";
                     Session.Id = new OrganizerController().getOrganizerId(user);
 
-                    MessageBox.Show("Organizer login successful.");
+                    MessageBox.Show(password == "admin123"
+                        ? "Logged into Organizer as Admin"
+                        : "Organizer login successful.");
+
                     this.Hide();
                     new OrganizerDashboard().Show();
                 }
@@ -74,27 +84,21 @@ namespace EventManagmentSystem
                 }
                 return;
             }
-
             
             var admin = new Admin(user, password);
-            if (admin.authenticateAdmin(admin) == "admin")
+            string role = admin.authenticateAdmin(admin);
+            if (role == "admin")
             {
                 MessageBox.Show("Admin login successful.");
                 this.Hide();
                 new AdminDashboard().Show();
-                return;
             }
-            else if (admin.authenticateAdmin(admin) != "admin")
+            else
             {
-                MessageBox.Show("Incorrect password for admin.");
+                MessageBox.Show("Username not found or incorrect password.");
+                textBox1.Clear();
                 textBox2.Clear();
-                return;  
             }
-
-
-            MessageBox.Show("Username not found.");
-            textBox1.Clear();
-            textBox2.Clear();
         }
 
 
