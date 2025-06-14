@@ -60,6 +60,7 @@ namespace EventManagmentSystem.View
             checkBox1RO.Checked = false;
             checkBox2RO.Checked = false;
 
+            this.Hide();
         }
 
         private void comboBoxRO_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -99,6 +100,8 @@ namespace EventManagmentSystem.View
             // Refresh the dropdown
             comboBox1RA.DataSource = null;
             comboBox1RA.DataSource = attendeeController.GetAllAttendeeUsernames();
+
+            this.Hide();
         }
 
         private void label4_Click(object sender, EventArgs e)

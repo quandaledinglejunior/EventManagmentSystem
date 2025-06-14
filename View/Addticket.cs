@@ -65,6 +65,7 @@ namespace EventManagmentSystem.View
             textBox1.Clear();
             textBox2.Clear();
 
+            this.Hide();
         }
 
 

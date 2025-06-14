@@ -89,6 +89,8 @@ namespace EventManagmentSystem.View
             textBox1.Clear();
             textBox2.Clear();
             comboBox3.SelectedIndex = -1;
+
+            this.Hide();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

@@ -66,6 +66,8 @@ namespace EventManagmentSystem.View
             }
 
             MessageBox.Show("Profile updated successfully.");
+
+            this.Hide();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) 

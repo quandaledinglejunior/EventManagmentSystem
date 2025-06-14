@@ -132,6 +132,7 @@ namespace EventManagmentSystem.View
             textBox3.Clear();
             comboBox2.SelectedIndex = -1;
 
+            this.Hide();
         }
     }
 }
