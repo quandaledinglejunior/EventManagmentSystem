@@ -78,6 +78,15 @@ namespace EventManagmentSystem.View
 
             Ticket selectedTicket = new Controller.TicketController().getTickeybyEventandType(eventId, ticketType);
 
+            if (quantity > selectedTicket.Quantity)
+            {
+                MessageBox.Show($"Only {selectedTicket.Quantity} tickets are left.");
+                textBox3.Clear();
+                return;
+            }
+
+            
+
             attendeeDashboard.paymentGateway(ticketId, quantity);
 
         }
