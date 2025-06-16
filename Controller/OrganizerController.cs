@@ -201,6 +201,32 @@ namespace EventManagmentSystem.Controller
             }
         }
 
+        public void UpdateOrganizer(int id, string name, string password, string contact, string email, string gender)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(dbConnection.connectionString))
+                {
+                    conn.Open();
+                    var cmd = new MySqlCommand(
+                        "UPDATE organizer SET name=@nm, password=@pw, contactnumber=@ct, email=@em, gender=@gn WHERE id=@id",
+                        conn
+                    );
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nm", name);
+                    cmd.Parameters.AddWithValue("@pw", password);
+                    cmd.Parameters.AddWithValue("@ct", contact);
+                    cmd.Parameters.AddWithValue("@em", email);
+                    cmd.Parameters.AddWithValue("@gn", gender);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating organizer: " + ex.Message);
+            }
+        }
+
         public DataTable getEventDetails(int event_id)
         {
             try

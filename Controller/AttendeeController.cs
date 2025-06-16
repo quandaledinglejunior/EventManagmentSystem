@@ -17,38 +17,50 @@ namespace EventManagmentSystem.Controller
         {
             try
             {
-                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
-                connection.Open();
-
-                string query = "INSERT INTO attendee (name, password, contactnumber, email, gender) value " +
-                    "(@name, @pasword, @contactnumber, @email, @gender)";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@name", attendee.Name);
-                command.Parameters.AddWithValue("@pasword", attendee.Password);
-                command.Parameters.AddWithValue("@contactnumber", attendee.ContactNumbers);
-                command.Parameters.AddWithValue("@email", attendee.Email);
-                command.Parameters.AddWithValue("@gender", attendee.Gender);
-
-                int result = command.ExecuteNonQuery();
-                if (result > 0)
+                using (var connection = new MySqlConnection(dbConnection.connectionString))
                 {
-                    MessageBox.Show("Attendee added successfully.");
-                }
-                else
-                {
-                    MessageBox.Show("Failed to add attendee.");
-                }
-                connection.Close();
+                    connection.Open();
 
+                    var fetchCmd = new MySqlCommand("SELECT name FROM attendee", connection);
+                    var reader = fetchCmd.ExecuteReader();
+                    var allNames = new List<string>();
+                    while (reader.Read())
+                        allNames.Add(reader.GetString(0));
+                    reader.Close();
+
+                    
+                    foreach (var existing in allNames)
+                    {
+                        if (string.Equals(existing, attendee.Name, StringComparison.OrdinalIgnoreCase))
+                        {
+                            MessageBox.Show("That username is already taken. Please choose another.");
+                            return;
+                        }
+                    }
+
+                    
+                    var insertQuery =
+                        "INSERT INTO attendee (name, password, contactnumber, email, gender) " +
+                        "VALUES (@name, @password, @contactnumber, @email, @gender)";
+                    var insertCmd = new MySqlCommand(insertQuery, connection);
+                    insertCmd.Parameters.AddWithValue("@name", attendee.Name);
+                    insertCmd.Parameters.AddWithValue("@password", attendee.Password);
+                    insertCmd.Parameters.AddWithValue("@contactnumber", attendee.ContactNumbers);
+                    insertCmd.Parameters.AddWithValue("@email", attendee.Email);
+                    insertCmd.Parameters.AddWithValue("@gender", attendee.Gender);
+
+                    int result = insertCmd.ExecuteNonQuery();
+                    if (result > 0)
+                        MessageBox.Show("Attendee added successfully.");
+                    else
+                        MessageBox.Show("Failed to add attendee.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
         }
-
         public string getAttendeePassword(string name)
         {
             try
@@ -181,5 +193,69 @@ namespace EventManagmentSystem.Controller
             }
             
         }
+
+        public Attendee GetAttendeeById(int id)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(dbConnection.connectionString))
+                {
+                    conn.Open();
+                    var cmd = new MySqlCommand(
+                        "SELECT * FROM attendee WHERE id = @id",
+                        conn
+                    );
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var at = new Attendee(
+                                reader["name"].ToString(),
+                                reader["password"].ToString(),
+                                reader["contactnumber"].ToString(),
+                                reader["email"].ToString(),
+                                reader["gender"].ToString()
+                            );
+                            at.Id = Convert.ToInt32(reader["id"]);
+                            return at;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching attendee: " + ex.Message);
+            }
+            return null;
+        }
+
+        public void UpdateAttendee(int id, string name, string password, string contact, string email, string gender)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(dbConnection.connectionString))
+                {
+                    conn.Open();
+                    var cmd = new MySqlCommand(
+                        "UPDATE attendee SET name=@nm, password=@pw, contactnumber=@ct, email=@em, gender=@gn WHERE id=@id",
+                        conn
+                    );
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nm", name);
+                    cmd.Parameters.AddWithValue("@pw", password);
+                    cmd.Parameters.AddWithValue("@ct", contact);
+                    cmd.Parameters.AddWithValue("@em", email);
+                    cmd.Parameters.AddWithValue("@gn", gender);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message);
+            }
+        }
+
     }
 }

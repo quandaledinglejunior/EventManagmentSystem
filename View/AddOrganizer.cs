@@ -48,6 +48,8 @@ namespace EventManagmentSystem.View
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
+            this.Hide();
         }
 
         private void AddOrganizer_Load(object sender, EventArgs e)
