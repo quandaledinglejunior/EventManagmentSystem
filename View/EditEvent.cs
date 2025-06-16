@@ -85,7 +85,7 @@ namespace EventManagmentSystem.View
         {
             List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id);
 
-            if (events.Count > 0)
+            if (events.Count > 0)   
             {
                 comboBox1.DataSource = events;
                 comboBox1.DisplayMember = "Name"; 
